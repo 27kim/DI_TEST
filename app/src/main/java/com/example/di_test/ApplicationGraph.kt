@@ -14,4 +14,8 @@ interface ApplicationGraph {
     // The return type  of functions inside the component interface is
     // what can be provided from the container
     fun repository() : UserRepository
+
+    // This tells Dagger that LoginActivity requests injection so the graph needs to
+    // satisfy all the dependencies of the fields that LoginActivity is requesting.
+    fun inject(activity: MainActivity)
 }

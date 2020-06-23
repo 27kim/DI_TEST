@@ -2,17 +2,21 @@ package com.example.di_test
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var loginViewModel: LoginViewModel
+    @Inject lateinit var loginViewModel: LoginViewModel
     private var loginData: LoginUserData? = null
     private lateinit var appContainer: AppContainer
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        appContainer = (application as MyApplication).appContainer
+
+        (application as MyApplication).appComponent.inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        appContainer = (application as MyApplication).appContainer
 
         // Login flow has started. Populate loginContainer in AppContainer`
         appContainer.loginContainer = LoginContainer(appContainer.userRepository)
