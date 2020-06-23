@@ -1,12 +1,19 @@
 package com.example.di_test
 
-class UserRepository (private val userLocalDataSource : UserLocalDataSource,
-private val userRemoteDataSource : UserRemoteDataSource)
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class UserRemoteDataSource(retrofit : Retrofit) {
+// Scope this class to a component using @Singleton scope (i.e. ApplicationGraph)
+@Singleton
+class UserRepository @Inject constructor(
+    private val userLocalDataSource: UserLocalDataSource,
+    private val userRemoteDataSource: UserRemoteDataSource
+)
+
+class UserRemoteDataSource @Inject constructor(retrofit: Retrofit) {
 
 }
 
-class UserLocalDataSource {
+class UserLocalDataSource @Inject constructor() {
 
 }

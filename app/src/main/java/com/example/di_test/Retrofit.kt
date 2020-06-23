@@ -1,5 +1,7 @@
 package com.example.di_test
 
-class Retrofit {
+import javax.inject.Inject
+
+class Retrofit @Inject constructor(){
 
 }

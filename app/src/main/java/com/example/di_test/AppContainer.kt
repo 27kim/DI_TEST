@@ -6,8 +6,9 @@ class AppContainer {
     val userLocalDataSource = UserLocalDataSource()
     val userRemoteDataSource = UserRemoteDataSource(retrofit)
 
-    val userRepository = UserRepository(userLocalDataSource, userRemoteDataSource)
-
+    val daggerApplicationGraph = DaggerApplicationGraph.create()
+//    val userRepository = UserRepository(userLocalDataSource, userRemoteDataSource)
+    val userRepository = daggerApplicationGraph.repository()
     val loginViewModelFactory = LoginViewModelFactory(userRepository)
 
     // LoginContainer will be null when the user is NOT in the login flow
